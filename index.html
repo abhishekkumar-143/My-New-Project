@@ -3,60 +3,88 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ringtone Songs</title>
-    <link rel="stylesheet" href="style.Css">
+    <title>Full Screen Image Slider</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        body,
+        html {
+            height: 100%;
+            overflow: hidden;
+            background-origin: padding-box;
+        }
+
+        .slider-container {
+            width: 100vw;
+            height: 90vh;
+            position: relative;
+            margin: 0 auto;
+
+
+        }
+
+        .slider-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 12px 25px;
+            font-size: 18px;
+            background-color: black;
+            color: rgb(148, 206, 24);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: rgb(211, 34, 34);
+        }
+
+        .btn.prev {
+            left: 20px;
+        }
+
+        .btn.next {
+            right: 20px;
+        }
+
+        .footer {
+            position: absolute;
+
+            width: 100%;
+            background-color: black;
+
+
+        }
+    </style>
 </head>
 
 <body>
-    <div class="navbar">
-        <a href="#" class="logo">Ringtone Songs</a>
-        <div class="menu">
-            <a href="#">Home</a>
-            <a href="#">Popular Songs</a>
-            <a href="#"> Instrumant Songs</a>
-            <a href="#">Download</a>
-        </div>
+    <h1 style="color: aliceblue; background-color: black; content: icon;">
+        **Full Screen Image Slider**</h1>
+
+
+
+    <div class="slider-container">
+        <img id="sliderImage" src="w1.jpg" alt="slider Image">
+        <button class="btn prev" onclick="prevImage()">Previous</button>
+        <button class="btn next" onclick="nextImage()">Next</button>
     </div>
-
-    <main>
-        <section class="Ringtone">
-            <h2>Popular Ringtone</h2>
-            <ul>
-                <li>
-                    <h3>Krishna flute 1</h3>
-                    <audio controls>
-                        <source src="krishna flute 1.mp3" type="audio/mp3">
-                    </audio>
-                </li>
-                <li>
-                    <h3>krishna flute 2</h3>
-                    <audio controls>
-                        <source src="krishna flute 2.mp3" type="audio/mp3">
-                    </audio>
-                </li>
-                <li>
-                    <h3>krishna flute 3</h3>
-                    <audio controls>
-                        <source src="krishna flute 3.mp3" type="audio/mp3">
-                    </audio>
-                </li>
-                <li>
-                    <h3>Maa</h3>
-                    <audio controls>
-                        <source src="Maa 1.mp3" type="audio/mp3">
-                    </audio>
-                </li>
-                <li>
-                    <h3>Sitar instrumant</h3>
-                    <audio controls>
-                        <source src="sitar 1.mp3" type="audio/mp3">
-                    </audio>
-                </li>
-            </ul>
-
-        </section>
-    </main>
     <div class="footer">
         <div class="col-1">
             <h3>Useful Links</h3>
@@ -71,8 +99,30 @@
         </div>
 
     </div>
+    <script>
+        const Image = [
+            "w1.jpg",
+            "w2.jpg",
+            "01.jpg",
+            "02.jpg",
+            "03.jpg",
 
-
+        ];
+        let index = 0;
+        const slider = document.getElementById("sliderImage");
+        function showImage() {
+            slider.src = Image[index];
+        }
+        function nextImage() {
+            index = (index + 1) % Image.length;
+            showImage();
+        }
+        function prevImage() {
+            index = (index - 1 + Image.length) % Image.length;
+            showImage();
+        }
+        setInterval(nextImage, 2000);
+    </script>
 
 </body>
 
